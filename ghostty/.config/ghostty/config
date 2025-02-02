@@ -1,2 +1,3 @@
 theme = catppuccin-mocha
 keybind = ctrl+shift+z=toggle_window_decorations
+font-family = JetBrainsMono Nerd Font
