@@ -35,3 +35,6 @@ eval "$(zoxide init zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 source "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+alias cd='z'
+alias ls='eza -lah'
