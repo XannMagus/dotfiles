@@ -1,8 +1,10 @@
-path+=('/home/xann/.local/bin')
+if [ -d "$HOME/.local/bin" ] ; then
+    path+=("$HOME/.local/bin")
+fi
 export PATH
 
 source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # The following lines were added by compinstall
 # 
 # zstyle ':completion:*' completer _expand _complete _ignored _approximate
@@ -26,7 +28,7 @@ unsetopt beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
-eval "$(oh-my-posh init zsh --config /home/xann/.config/oh-my-posh/my_theme.omp.json)"
+eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/my_theme.omp.json)"
 eval "$(zoxide init zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
