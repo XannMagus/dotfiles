@@ -6,16 +6,37 @@ return {
         "nvim-tree/nvim-web-devicons",
         "MunifTanjim/nui.nvim",
     },
-    config = function()
-        require("neo-tree").setup({
-            filesystem = {
-                filtered_items = {
-                    visible = true,
-                    hide_dotfiles = false,
-                    hide_gitignored = true,
-                },
+    keys = {
+        {
+            "<leader>n",
+            function()
+                require("neo-tree.command").execute({ toggle = true, reveal = true })
+            end,
+            desc = "Show Neotree",
+        },
+    },
+    opts = {
+        close_if_last_window = true,
+        event_handlers = {
+            {
+                event = "file_open_requested",
+                handler = function()
+                    require("neo-tree.command").execute({ action = "close" })
+                end,
             },
-        })
-        vim.keymap.set("n", "<leader>n", ":Neotree filesystem reveal left<CR>")
-    end,
+        },
+        filesystem = {
+            filtered_items = {
+                visible = true,
+                hide_dotfiles = false,
+                hide_gitignored = true,
+            },
+            follow_current_file = {
+                enabled = true,
+            },
+        },
+        window = {
+            position = "left",
+        },
+    },
 }
