@@ -1,9 +1,3 @@
-if [ -d "$HOME/.local/bin" ] ; then
-    path+=("$HOME/.local/bin")
-fi
-export PATH
-
-source "$HOME/.config/zsh/env_var.zsh"
 source "$ZSH_PLUGINS_DIR/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
 # source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # The following lines were added by compinstall
