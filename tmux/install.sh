@@ -4,6 +4,9 @@ plugins_dir="${XDG_CONFIG_HOME:-$HOME/.config}/tmux/plugins"
 catppuccin_dir="$plugins_dir/catppuccin-tmux"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d087b37 ([TMUX] Install TPM if it isn't already installed)
 if [[ ! -d "$plugins_dir/tpm" ]]; then
     print -P "%F{blue}\uf017%f Cloning TPM"
     if ! git clone -q --depth 1 https://github.com/tmux-plugins/tpm "$plugins_dir/tpm"; then
@@ -15,8 +18,11 @@ else
     print -P "%F{green}\u2713%f TPM already installed"
 fi
 
+<<<<<<< HEAD
 =======
 >>>>>>> 3e836c4 ([TMUX] Manually install catppuccin rather than use TPM)
+=======
+>>>>>>> d087b37 ([TMUX] Install TPM if it isn't already installed)
 if [[ -d "$catppuccin_dir" ]]; then
     print -P "%F{green}\u2713 %fCatppuccin plugin already installed"
     exit 0
