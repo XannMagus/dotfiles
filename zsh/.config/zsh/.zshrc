@@ -1,3 +1,8 @@
+if ( command -v lsb_release &>/dev/null && [[ "$(lsb_release -si)" == "Ubuntu" ]] ) || \
+    ( [[ -f /etc/os-release ]] && grep -q '^ID=ubuntu' /etc/os-release ); then
+    skip_global_compinit=1
+fi
+
 source "$ZSH_PLUGINS_DIR/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
 # source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # The following lines were added by compinstall
