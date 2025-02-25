@@ -5,7 +5,6 @@ add_to_path() {
     fi
 }
 . "$HOME/.cargo/env"
-. "$HOME/.config/zsh/env_var.zsh"
 
 : ${XDG_STATE_HOME:=$HOME/.local/state}
 : ${XDG_CONFIG_HOME:=$HOME/.config}
