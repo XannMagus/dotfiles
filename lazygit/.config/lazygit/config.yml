@@ -2,3 +2,15 @@ git:
   paging:
     colorArg: always
     pager: diff-so-fancy
+
+customCommands:
+  - key: '<c-p>'
+    context: 'global'
+    command: 'git fetch -p'
+    description: 'Fetch and prune tracking branches'
+
+  - key: 'b'
+    context: 'localBranches'
+    loadingText: 'Pruning...'
+    command: "git branch -vv | awk '/: gone]/{print $1}' | xargs -r git branch -D"
+    description: 'Delete local branches with upstream gone'
