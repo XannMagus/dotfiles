@@ -43,8 +43,6 @@ return {
                     { name = "nvim_lsp" },
                     { name = "luasnip" }, -- For luasnip users.
                 }, {
-                    { name = "treesitter" },
-                }, {
                     { name = "buffer" },
                 }),
             })
