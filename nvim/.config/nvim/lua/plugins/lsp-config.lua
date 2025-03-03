@@ -29,8 +29,8 @@ return {
                 capabilities = capabilities,
             })
 
-            vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
             vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
+			-- vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 
             vim.keymap.set('n', ']g', vim.diagnostic.goto_next)
             vim.keymap.set('n', '[g', vim.diagnostic.goto_prev)
