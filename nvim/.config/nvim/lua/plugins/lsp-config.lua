@@ -9,7 +9,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		lazy = false,
 		opts = {
-			ensure_installed = { "lua_ls", "phpactor", "yaml-language-server" },
+			ensure_installed = { "lua_ls", "phpactor", "psalm", "yaml-language-server" },
 			auto_install = true,
 		},
 	},
@@ -26,6 +26,9 @@ return {
 				capabilities = capabilities,
 			})
 			lspconfig.yamlls.setup({
+				capabilities = capabilities,
+			})
+			lspconfig.psalm.setup({
 				capabilities = capabilities,
 			})
 
