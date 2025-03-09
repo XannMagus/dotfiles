@@ -9,7 +9,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		lazy = false,
 		opts = {
-			ensure_installed = { "lua_ls", "phpactor", "psalm", "yaml-language-server" },
+			ensure_installed = { "lua_ls", "phpactor", "psalm", "yamlls" },
 			auto_install = true,
 		},
 	},
