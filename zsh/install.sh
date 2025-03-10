@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/usr/bin/env zsh
 
 install_rust() {
     if command -v rustc &>/dev/null && command -v cargo &>/dev/null; then
@@ -39,6 +39,11 @@ script_dir=${0:A:h}
 
 install_rust
 
+source "$script_dir/env_var.zsh"
+
 [[ ! -d $ZDOTDIR ]] && mkdir -p $ZDOTDIR && print -P "%F{blue}\uea80 Created ZSH config directory%f"
 
-[[ ! -f $ZDOTDIR/env_var.zsh ]] && cp $script_dir/env_var.zsh $ZDOTDIR/ && print -P "%F{yellow}\uf071%f Copied the default%F{red}(purposefully broken)%f env_var config file.\nYou HAVE to update it with the correct values"
+print -P "$ZSH_PLUGINS_DIR"
+for repo in "${plugins[@]}"; do
+    echo "$repo -> ${repo##*/}"
+done
