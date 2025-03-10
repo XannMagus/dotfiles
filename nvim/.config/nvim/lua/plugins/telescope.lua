@@ -29,7 +29,7 @@ return {
 
             vim.keymap.set("n", "<C-k>", builtin.keymaps, { desc = "Show Keymaps" })
 
-            vim.keymap.set("n", "F", builtin.grep_string, { desc = "Find in files" })
+            vim.keymap.set("n", "<c-f>", builtin.grep_string, { desc = "Find in files" })
 
             vim.keymap.set("n", "gd", builtin.lsp_definitions, { desc = "Goto definition" })
             vim.keymap.set("n", "gt", builtin.lsp_type_definitions, { desc = "Goto type" })

@@ -9,7 +9,7 @@ return {
         "williamboman/mason-lspconfig.nvim",
         lazy = false,
         opts = {
-            ensure_installed = { "lua_ls", "phpactor" },
+            ensure_installed = { "lua_ls", "phpactor", "psalm", "yamlls", "twiggy_language_server" },
             auto_install = true,
         },
     },
@@ -24,18 +24,37 @@ return {
             })
             lspconfig.phpactor.setup({
                 capabilities = capabilities,
+                init_options = {
+                    ["logging.enabled"] = true,
+                    ["logging.level"] = "debug",
+                    ["logging.path"] = "phpactor.log",
+                },
+            })
+            lspconfig.psalm.setup({
+                capabilities = capabilities,
+            })
+            lspconfig.yamlls.setup({
+                capabilities = capabilities,
+            })
+            lspconfig.twiggy_language_server.setup({
+                capabilities = capabilities,
+                settings = {
+                    twiggy = {
+                        framework = "symfony",
+                    },
+                },
             })
 
-            vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-            vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
+            -- vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+            vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Goto declaration" })
 
-            vim.keymap.set('n', ']g', vim.diagnostic.goto_next)
-            vim.keymap.set('n', '[g', vim.diagnostic.goto_prev)
+            vim.keymap.set("n", "]g", vim.diagnostic.goto_next, { desc = "Goto next diagnostic" })
+            vim.keymap.set("n", "[g", vim.diagnostic.goto_prev, { desc = "Goto previous diagnostic" })
 
-            vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
+            vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Show code actions" })
             vim.keymap.set("n", "<leader>f", function()
                 vim.lsp.buf.format({ async = true })
-            end, {})
+            end, { desc = "Format buffer" })
         end,
     },
 }
