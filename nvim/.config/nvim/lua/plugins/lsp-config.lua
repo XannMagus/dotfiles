@@ -14,10 +14,28 @@ return {
         },
     },
     {
+        "kevinhwang91/nvim-ufo",
+        dependencies = {
+            "kevinhwang91/promise-async",
+            "neovim/nvim-lspconfig",
+        },
+        opts = {},
+        config = function(_, opts)
+            vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+            vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+
+            require("ufo").setup(opts or {})
+        end,
+    },
+    {
         "neovim/nvim-lspconfig",
         config = function()
             local lspconfig = require("lspconfig")
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
+            capabilities.textDocument.foldingRange = {
+                dynamicRegistration = false,
+                lineFoldingOnly = true,
+            }
 
             lspconfig.lua_ls.setup({
                 capabilities = capabilities,
