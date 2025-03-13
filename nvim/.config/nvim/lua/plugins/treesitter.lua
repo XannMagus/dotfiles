@@ -5,7 +5,7 @@ return {
         config = function()
             local configs = require("nvim-treesitter.configs")
             configs.setup({
-                ensure_installed = { 'markdown', 'markdown_inline' },
+                ensure_installed = { "markdown", "markdown_inline" },
                 auto_install = true,
                 highlight = { enable = true },
                 indent = { enable = true },
@@ -115,7 +115,18 @@ return {
         },
         opts = {},
         keys = {
-            { "<leader>c", "<cmd>TSContextToggle<CR>", desc = "Toggle context reminder" },
+            { "<leader>tc", "<cmd>TSContextToggle<CR>", desc = "Toggle context reminder" },
+        },
+    },
+    {
+        "folke/twilight.nvim",
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        },
+        keys = {
+            { "<leader>tt", "<cmd>Twilight<CR>", desc = "Toggle Twilight" },
         },
     },
 }
