@@ -48,18 +48,7 @@ return {
                     ["<C-f>"] = cmp.mapping.scroll_docs(4),
                     ["<C-Space>"] = cmp.mapping.complete(),
                     ["<C-e>"] = cmp.mapping.abort(),
-                    ["<CR>"] = cmp.mapping(function(fallback)
-                        local luasnip = require("luasnip")
-                        if cmp.visible() then
-                            if luasnip.expandable() then
-                                luasnip.expand() -- Expand snippet
-                            else
-                                cmp.mapping.confirm({ select = true }) -- Accept currently selected item.
-                            end
-                        else
-                            fallback()
-                        end
-                    end),
+                    ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item.
                     ["<Tab>"] = cmp.mapping(function(fallback)
                         local luasnip = require("luasnip")
                         if cmp.visible() then
@@ -87,11 +76,22 @@ return {
                         group_index = 0, -- set group index to 0 to skip loading LuaLS completions
                     },
                     { name = "nvim_lsp" },
+                    { name = "codeium" },
                     { name = "luasnip" }, -- For luasnip users.
                 }, {
                     { name = "buffer" },
                 }),
             })
+        end,
+    },
+    {
+        "Exafunction/codeium.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "hrsh7th/nvim-cmp",
+        },
+        config = function()
+            require("codeium").setup({})
         end,
     },
 }
