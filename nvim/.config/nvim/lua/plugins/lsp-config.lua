@@ -48,9 +48,9 @@ return {
                     ["logging.path"] = "phpactor.log",
                 },
             })
-            lspconfig.psalm.setup({
-                capabilities = capabilities,
-            })
+            -- lspconfig.psalm.setup({
+            --     capabilities = capabilities,
+            -- })
             lspconfig.yamlls.setup({
                 capabilities = capabilities,
             })
@@ -73,6 +73,7 @@ return {
             vim.keymap.set("n", "<leader>f", function()
                 vim.lsp.buf.format({ async = true })
             end, { desc = "Format buffer" })
+            vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename symbol" })
         end,
     },
 }
