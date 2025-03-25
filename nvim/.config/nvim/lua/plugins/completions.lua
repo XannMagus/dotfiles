@@ -79,6 +79,9 @@ return {
 			-- elsewhere in your config, without redefining it, due to `opts_extend`
 			sources = {
 				default = { "lazydev", "lsp", "path", "snippets", "buffer", "codeium" },
+				per_filetype = {
+					sql = { "snippets", "dadbod", "buffer", "codeium" },
+				},
 				providers = {
 					lazydev = {
 						name = "LazyDev",
@@ -90,6 +93,11 @@ return {
 						module = "blink.compat.source",
 						score_offset = 100,
 						async = true,
+					},
+					dadbod = {
+						name = "Dadbod",
+						module = "vim_dadbod_completion.blink",
+						score_offset = 300,
 					},
 				},
 			},
