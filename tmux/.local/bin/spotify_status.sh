@@ -3,28 +3,56 @@ term_width=$(tput cols)
 # MAX_LENGTH=$((term_width / 5))
 MAX_LENGTH=50
 
-truncate_on_word_border() {
-    local input="$1"
-    local max_length="$2"
-    if [[ "${#input}" -le $max_length ]]; then
-        echo "$input"
-    else
-        echo "$input" | awk -v max="$max_length" '{
-            len = 0;
-            truncated = "";
-            for (i = 1; i <= NF; i++) {
-                word = $i;
-                if (len + length(word) + (i > 1 ? 1 : 0) <= max) {
-                    truncated = truncated (truncated ? " " : "") word;
-                    len += length(word) + (i > 1 ? 1 : 0);
-                } else {
-                    truncated = truncated "...";
-                    break;
-                }
-            }
-            print truncated;
-        }'
-    fi
+truncate_balanced() {
+    local artist="$1"
+    local title="$2"
+    local max_length="$3"
+    local sep=" - "
+    local sep_len=${#sep}
+
+    local -a artist_words=("${(z)artist}")
+    local -a title_words=("${(z)title}")
+
+    local artist_result="${artist_words[1]}"
+    local artist_len=${#artist_result}
+    local title_result="${title_words[1]}"
+    local title_len=${#title_result}
+
+    local used_len=$((artist_len + title_len + sep_len))
+
+    local i=2
+    while (( used_len < max_length )); do
+        local next_artist="${artist_words[i]}"
+        local next_title="${title_words[i]}"
+
+        local added=0
+
+        if [[ -n "$next_artist" ]]; then
+            local candidate_len=$((used_len + ${#next_artist} + 1)) # +1 for space
+            if (( candidate_len <= max_length - 6 )); then
+                artist_result+=" $next_artist"
+                used_len=$candidate_len
+                added=1
+            fi
+        fi
+
+        if [[ -n "$next_title" ]]; then
+            local candidate_len=$((used_len + ${#next_title} + 1)) # +1 for space
+            if (( candidate_len <= max_length - 6 )); then
+                title_result+=" $next_title"
+                used_len=$candidate_len
+                added=1
+            fi
+        fi
+
+        (( added == 0 )) && break
+        ((i++))
+    done
+    
+    [[ $i -le ${#artist_words} ]] && artist_result+="..."
+    [[ $i -le ${#title_words} ]] && title_result+="..."
+
+    echo "$artist_result$sep$title_result"
 }
 
 json=$(spotify_player get key playback)
@@ -41,8 +69,7 @@ title=$(echo "$json" | jq -r '.item.name')
 artists=${artists:-"Unknown Artist"}
 title=${title:-"Unknown Title"}
 
-combined_string="${artists} - ${title}"
-combined_string=$(truncate_on_word_border "$combined_string" "$MAX_LENGTH")
+combined_string=$(truncate_balanced "$artists" "$title" "$MAX_LENGTH")
 
 if [[ "$is_playing" == "true" ]]; then
     icon="\u266b"
