@@ -30,48 +30,27 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			local lspconfig = require("lspconfig")
-			-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			-- capabilities.textDocument.foldingRange = {
-			-- 	dynamicRegistration = false,
-			-- 	lineFoldingOnly = true,
-			-- }
-
-			local capabilities = {
-				textDocument = {
-					foldingRange = {
-						dynamicRegistration = false,
-						lineFoldingOnly = true,
-					},
-				},
-			}
-			capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
-
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.phpactor.setup({
-				capabilities = capabilities,
+			vim.lsp.enable("lua_ls")
+			vim.lsp.config("phpactor", {
 				init_options = {
 					["logging.enabled"] = true,
 					["logging.level"] = "debug",
 					["logging.path"] = "phpactor.log",
 				},
 			})
+			vim.lsp.enable("phpactor")
 			-- lspconfig.psalm.setup({
 			--     capabilities = capabilities,
 			-- })
-			lspconfig.yamlls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.twiggy_language_server.setup({
-				capabilities = capabilities,
+			vim.lsp.enable("yamlls")
+			vim.lsp.config("twiggy_language_server", {
 				settings = {
 					twiggy = {
 						framework = "symfony",
 					},
 				},
 			})
+			vim.lsp.enable("twiggy_language_server")
 
 			-- vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Goto declaration" })

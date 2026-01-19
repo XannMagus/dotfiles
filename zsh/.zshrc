@@ -1,10 +1,13 @@
 if [ -d "$HOME/.local/bin" ] ; then
     path+=("$HOME/.local/bin")
 fi
+if [ -d "$HOME/go/bin" ] ; then
+    path+=("$HOME/go/bin")
+fi
 export PATH
 
 source "$HOME/.config/zsh/env_var.zsh"
-source "$ZSH_PLUGINS_DIR/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
+# source "$ZSH_PLUGINS_DIR/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
 # source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # The following lines were added by compinstall
 # 
@@ -32,9 +35,17 @@ bindkey -v
 eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/my_theme.omp.json)"
 eval "$(zoxide init zsh)"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(fzf --zsh)
 
 source "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
+
 alias cd='z'
 alias ls='eza -lah'
+alias cat='bat'
+
+export EDITOR=nvim
