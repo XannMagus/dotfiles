@@ -3,10 +3,33 @@ term_width=$(tput cols)
 # MAX_LENGTH=$((term_width / 5))
 MAX_LENGTH=50
 
+truncate_simple() {
+    local text="$1"
+    local max_length="$2"
+
+    if (( ${#text} <= max_length )); then
+        echo "$text"
+    else
+        echo "${text:0:$((max_length - 3))}..."
+    fi
+}
+
 truncate_balanced() {
     local artist="$1"
     local title="$2"
     local max_length="$3"
+
+    if [[ -z "$artist" && -z "$title" ]]; then
+        echo ""
+        return
+    elif [[ -z "$artist" ]]; then
+        truncate_simple "$title" "$max_length"
+        return
+    elif [[ -z "$title" ]]; then
+        truncate_simple "$artist" "$max_length"
+        return
+    fi
+
     local sep=" - "
     local sep_len=${#sep}
 
@@ -55,30 +78,41 @@ truncate_balanced() {
     echo "$artist_result$sep$title_result"
 }
 
-json=$(spotify_player get key playback)
+playback_status=$(playerctl status 2>/dev/null)
 
-if [[ "$json" == "null" || -z "$json" ]]; then
+if [[ -z "$playback_status" ]]; then
     echo ""
     exit 0
 fi
 
-is_playing=$(echo "$json" | jq -r '.is_playing')
-artists=$(echo "$json" | jq -r '.item.artists | map(.name) | join(", ")')
-title=$(echo "$json" | jq -r '.item.name')
+artists=$(playerctl metadata artist 2>/dev/null)
+title=$(playerctl metadata title 2>/dev/null)
 
-artists=${artists:-"Unknown Artist"}
-title=${title:-"Unknown Title"}
+artists=${artists:-""}
+title=${title:-""}
 
 combined_string=$(truncate_balanced "$artists" "$title" "$MAX_LENGTH")
 
-if [[ "$is_playing" == "true" ]]; then
-    icon="\u266b"
-    color="thm_green"
-else
-    # icon="\u23f8"
-    icon="\u2016"
-    color="thm_peach"
+if [[ -z "$combined_string" ]]; then
+    echo ""
+    exit 0
 fi
+
+case "$playback_status" in
+    "Playing")
+        icon="\u266b"
+        color="thm_green"
+        ;;
+    "Paused")
+        # icon="\u23f8"
+        icon="\u2016"
+        color="thm_peach"
+        ;;
+    "Stopped"|*)
+        icon="\u25a0"
+        color="thm_peach"
+        ;;
+esac
 
 result="#[fg=#{E:@$color}]#{?#{==:#{@catppuccin_status_connect_separator},yes},,#[bg=default]}#{@catppuccin_status_left_separator}"
 result+="#[fg=#{E:@thm_crust},bg=#{E:@$color}]${icon} "

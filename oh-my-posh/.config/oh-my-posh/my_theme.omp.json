@@ -6,7 +6,10 @@
     "os": "#ACB0BE",
     "pink": "#F5BDE6",
     "text": "#494D64",
-    "wight": "#FFFFFF"
+    "wight": "#FFFFFF",
+    "green": "#A6DA95",
+    "yellow": "#EED49F",
+    "red": "#ED8796"
   },
   "upgrade": {
     "source": "cdn",
@@ -68,6 +71,27 @@
           "background": "p:lavender",
           "type": "git",
           "style": "powerline"
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "executiontime",
+          "style": "plain",
+          "foreground": "p:green",
+          "foreground_templates": [
+            "{{ if gt .Ms 5000 }}p:red{{ end }}",
+            "{{ if gt .Ms 2000 }}p:yellow{{ end }}"
+          ],
+          "properties": {
+            "threshold": 500,
+            "style": "roundrock",
+            "always_enabled": false
+          },
+          "template": "{{ .FormattedMs }} "
         }
       ]
     },
