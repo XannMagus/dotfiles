@@ -49,3 +49,11 @@ alias ls='eza -lah'
 alias cat='bat'
 
 export EDITOR=nvim
+
+precmd() {
+    print -Pn "\e]0;%~\a"
+}
+
+preexec() {
+    print -Pn "\e]0;$1 : %~\a"
+}

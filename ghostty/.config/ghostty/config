@@ -2,3 +2,4 @@ theme = catppuccin-mocha.conf
 keybind = ctrl+shift+z=toggle_window_decorations
 background-opacity = 0.8
 font-family = JetBrainsMono Nerd Font
+window-decoration = false
