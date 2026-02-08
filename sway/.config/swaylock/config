@@ -1,0 +1,16 @@
+image=~/.config/background
+show-failed-attempts
+show-keyboard-layout
+indicator-radius=100
+indicator-thickness=14
+bs-hl-color=f38ba8
+key-hl-color=94e2d5
+ring-color=b4befe
+line-color=1e1e2e
+text-color=cdd6f4
+ring-ver-color=89b4fa
+inside-ver-color=74c7ec
+ring-wrong-color=f38ba8
+inside-wrong-color=eba0ac
+ring-clear-color=fab387
+inside-clear-color=f9e2af
