@@ -4,12 +4,13 @@
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: "JetBrainsMono Nerd Font", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
     font-size: 13px;
+    opacity: 1;
 }
 
 window#waybar {
     background: transparent;
     color: @text;
-    margin: 5px 5px;
+    margin: 0.3rem 0.3rem;
 }
 
 window#waybar.empty #window {
@@ -18,7 +19,7 @@ window#waybar.empty #window {
 
 button {
     /* Use box-shadow instead of border so the text isn't offset */
-    box-shadow: inset 0 -3px transparent;
+    box-shadow: inset 0 -0.25rem transparent;
     /* Avoid rounded borders under each button name */
     border: none;
     border-radius: 0;
@@ -28,47 +29,49 @@ button {
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
     background: inherit;
-    box-shadow: inset 0 -3px #ffffff;
+    box-shadow: inset 0 -0.25rem #ffffff;
 }
 
 #workspaces {
-    border-radius: 1rem;
-    margin: 5px;
-    padding: 5px 1rem;
-    background-color: @surface0;
+    border-radius: 3rem;
+    margin: 0.4rem;
+    padding: 0.2rem 0.8rem;
+    background-color: @surface0-80;
     margin-left: 1rem;
     margin-right: 1rem;
 }
 
 #workspaces button {
     padding: 0.4rem;
-    color: @lavender;
-    border-radius: 1rem;
+    color: @mauve;
+    background-color: transparent;
+    border-radius: 3rem;
 }
 
 #workspaces button:hover {
     color: @sapphire;
-    border-radius: 1rem;
+    border-radius: 3rem;
     box-shadow: inherit;
 }
 
 #workspaces button.active {
-    border-radius: 1rem;
+    border-radius: 3rem;
     color: @sky;
 }
 
 #workspaces button.urgent {
     color: @red;
-    border-radius: 1rem;
+    border-radius: 3rem;
 }
 
 #window {
-    border-radius: 1rem;
-    margin: 5px;
-    padding: 5px 1rem;
-    background-color: @surface0;
+    border-radius: 3rem;
+    margin: 0.4rem;
+    padding: 0.4rem 1rem;
+    background-color: @surface0-80;
     margin-left: 1rem;
     margin-right: 1rem;
+    min-width: 1rem;
 }
 
 #mode {
@@ -77,13 +80,13 @@ button:hover {
 }
 
 .modules-right > widget > * {
-    background-color: @surface0;
+    background-color: @surface0-80;
     padding: 0.2rem 1rem;
-    margin: 5px 0;
+    margin: 0.4rem 0;
 }
 
 .modules-right > widget:first-child > * {
-    border-radius: 1rem 0px 0px 1rem;
+    border-radius: 3rem 0px 0px 3rem;
     margin-left: 1rem;
 }
 
@@ -99,12 +102,12 @@ button:hover {
 
 #clock {
     color: @blue;
-    border-radius: 0px 1rem 1rem 0px;
+    border-radius: 0px 3rem 3rem 0px;
     margin-right: 1rem;
 }
 
 #clock:hover {
-    background-color: @blue;
+    background-color: @blue-80;
     color: @surface0;
 }
 
@@ -117,7 +120,7 @@ button:hover {
 }
 
 #battery:hover, #battery.charging:hover, #battery.plugged:hover {
-    background-color: @green;
+    background-color: @green-80;
     color: @surface0;
 }
 
@@ -126,7 +129,7 @@ button:hover {
 }
 
 #battery.warning:not(.charging):hover {
-    background-color: @yellow;
+    background-color: @yellow-80;
     color: @surface0;
 }
 
@@ -168,7 +171,7 @@ button:hover {
 }
 
 #cpu:hover {
-    background-color: @blue;
+    background-color: @blue-80;
     color: @surface0;
 }
 
@@ -177,24 +180,8 @@ button:hover {
 }
 
 #memory:hover {
-    background-color: @mauve;
+    background-color: @mauve-80;
     color: @surface0;
-}
-
-#disk {
-    background-color: #964B00;
-}
-
-#backlight {
-    background-color: #90b1b1;
-}
-
-#network {
-    background-color: #2980b9;
-}
-
-#network.disconnected {
-    background-color: #f53c3c;
 }
 
 #pulseaudio {
@@ -203,7 +190,7 @@ button:hover {
 }
 
 #pulseaudio:hover {
-    background-color: @teal;
+    background-color: @teal-80;
     color: @surface0;
 }
 
@@ -212,7 +199,7 @@ button:hover {
 }
 
 #pulseaudio.muted:hover {
-    background-color: @maroon;
+    background-color: @maroon-80;
     color: @surface0;
 }
 
@@ -231,7 +218,7 @@ button:hover {
 }
 
 #custom-media:hover {
-    background-color: @mauve;
+    background-color: @mauve-80;
     color: @surface0;
 }
 
@@ -253,6 +240,18 @@ button:hover {
     color: @surface0;
 }
 
+#power {
+    background: transparent;
+}
+
+#custom-power, #custom-suspend, #custom-reboot, #custom-logout {
+    background: transparent;
+}
+
+#custom-power:hover, #custom-suspend:hover, #custom-reboot:hover, #custom-logout:hover {
+    color: @red;
+}
+
 #temperature {
     background-color: #f0932b;
 }
@@ -261,10 +260,25 @@ button:hover {
     background-color: #eb4d4b;
 }
 
+#custom-bluetooth {
+    margin-left: 1rem;
+    padding-right: 0;
+    border-radius: 3rem 0 0 3rem;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+#custom-bluetooth.connected {
+    color: @blue;
+}
+
+#custom-bluetooth.disconnected {
+    color: @maroon;
+}
+
 #tray {
     margin-right: 1rem;
-    margin-left: 1rem;
-    border-radius: 1rem;
+    border-radius: 0 3rem 3rem 0;
     color: @teal;
 
 }
@@ -284,18 +298,18 @@ button:hover {
 }
 
 #idle_inhibitor:hover {
-    background-color: @text;
+    background-color: @text-80;
     color: @surface0;
 }
 
 #idle_inhibitor.activated {
-    background-color: @lavender;
+    background-color: @lavender-80;
     color: @crust;
 }
 
 #idle_inhibitor.activated:hover {
     color: @lavender;
-    background-color: @crust;
+    background-color: @crust-80;
 }
 
 #mpd {

@@ -20,31 +20,32 @@
         "memory",
         "battery",
         "clock",
+        "custom/bluetooth",
         "tray",
-        "custom/power"
+        "group/power"
     ],
     // Modules configuration
     "niri/workspaces": {
         "format": "{icon}",
         "format-icons": {
-            "active": "",
-            "default": ""
+            "active": "\uf192",
+            "default": "\uf111"
         }
     },
     "niri/window": {
         "format": "{}",
         "max-length": 90,
         "rewrite": {
-            "(.*) - Google Chrome": " $1",
-            "(.*) - Slack": " $1",
-            "Spotify Premium": ""
+            "(.*) - Google Chrome": "\uf268 $1",
+            "(.*) - Slack": "\uf198 $1",
+            "Spotify Premium": "\uf1bc"
         }
     },
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "",
-            "deactivated": ""
+            "activated": "\uf06e",
+            "deactivated": "\uf070"
         },
         "tooltip": true,
         "tooltip-format-activated": "screen won't sleep",
@@ -53,19 +54,19 @@
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
         "format": "{icon} {volume}% {format_source}",
-        "format-bluetooth": "{icon}  {volume}% {format_source}",
-        "format-bluetooth-muted": "󰝟 {icon}  {format_source}",
-        "format-muted": "󰝟 {format_source}",
+        "format-bluetooth": "{icon} \uf294 {volume}% {format_source}",
+        "format-bluetooth-muted": "\udb81\udf5f {icon} \uf294 {format_source}",
+        "format-muted": "\udb81\udf5f {format_source}",
         "format-source": "",
-        "format-source-muted": "",
+        "format-source-muted": "\uf131",
         "format-icons": {
-            "headphone": "",
-            "hands-free": "󰋎",
-            "headset": "󰋎",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
+            "headphone": "\uf025",
+            "hands-free": "\udb80\udece",
+            "headset": "\udb80\udece",
+            "phone": "\uf095",
+            "portable": "\uf095",
+            "car": "\uf1b9",
+            "default": ["\uf026", "\uf027", "\uf028"]
         },
         "on-click": "pavucontrol"
     },
@@ -74,28 +75,72 @@
         "return-type": "json",
         "max-length": 50,
         "format-icons": {
-            "spotify": "",
-            "default": "🎜",
-            "Paused": "",
-            "Playing": "",
-            "Stopped": "󰓛"
+            "spotify": "\uf1bc",
+            "default": "\udb81\udf5a",
+            "Paused": "\uf04c",
+            "Playing": "\uf04b",
+            "Stopped": "\uf04d"
         },
         "escape": true,
-        "exec": "playerctl metadata --format '{\"text\": \"{{artist}} - {{title}}\", \"tooltip\": \"{{playerName}}: {{artist}} - {{album}} - {{title}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' 2>/dev/null || echo '{\"text\": \"\", \"class\": \"Stopped\"}'",
+        "exec": "playerctl metadata --format '{\"text\": \"{{artist}} - {{title}}\", \"tooltip\": \"{{playerName}}: {{artist}} - {{album}} - {{title}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' 2>/dev/null || echo ''",
         "on-click": "playerctl play-pause",
         "interval": 2
     },
+    "group/power": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "not-power",
+            "transition-left-right": false,
+        },
+        "modules": [
+            "custom/power",
+            "custom/logout",
+            "custom/suspend",
+            "custom/reboot",
+        ]
+    },
     "custom/power": {
-        "format" : "⏻ ",
+        "format" : "\u23fb ",
 		"tooltip": false,
-		"menu": "on-click",
-		"menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
-		"menu-actions": {
-			"shutdown": "shutdown",
-			"reboot": "reboot",
-			"suspend": "systemctl suspend",
-			"logout": "niri msg action quit"
-		}
+        "on-click": "shutdown",
+		// "menu": "on-click",
+		// "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
+		// "menu-actions": {
+		// 	"shutdown": "shutdown",
+		// 	"reboot": "reboot",
+		// 	"suspend": "systemctl suspend",
+		// 	"logout": "niri msg action quit"
+		// }
+    },
+    "custom/logout": {
+        "format": "\uf08b ",
+        "tooltip": false,
+        "on-click": "niri msg action quit",
+    },
+    "custom/suspend": {
+        "format": "\udb82\udd04 ",
+        "tooltip": false,
+        "on-click": "systemctl suspend",
+    },
+    "custom/reboot": {
+        "format": "\uead2 ",
+        "tooltip": false,
+        "on-click": "reboot",
+    },
+    "custom/bluetooth": {
+        "exec": "$XDG_CONFIG_HOME/waybar/bt-status.sh",
+        "return-type": "json",
+        "interval": 2,
+        "format": "{icon}",
+        "format-icons": {
+            "on": "\udb80\udcaf",
+            "off": "\udb80\udcb2",
+            "connected": "\udb80\udcb1",
+        },
+        "on-click": "foot --app-id bluetooth-manager bluetui",
+        "tooltip": true,
+        "on-click-right": "rfkill toggle bluetooth",
     },
     "tray": {
         "spacing": 10,

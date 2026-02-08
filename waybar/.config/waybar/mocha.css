@@ -24,3 +24,15 @@
 @define-color base #1e1e2e;
 @define-color mantle #181825;
 @define-color crust #11111b;
+
+@define-color surface0-80 rgba(49, 50, 68, 0.6);
+@define-color blue-80 rgba(137, 180, 250, 0.6);
+@define-color green-80 rgba(166, 227, 161, 0.6);
+@define-color yellow-80 rgba(249, 226, 175, 0.6);
+@define-color red-80 rgba(243, 139, 168, 0.6);
+@define-color mauve-80 rgba(203, 166, 247, 0.6);
+@define-color teal-80 rgba(148, 226, 213, 0.6);
+@define-color maroon-80 rgba(235, 160, 172, 0.6);
+@define-color text-80 rgba(205, 214, 244, 0.6);
+@define-color lavender-80 rgba(180, 190, 254, 0.6);
+@define-color crust-80 rgba(17, 17, 27, 0.6);
