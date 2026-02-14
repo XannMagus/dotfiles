@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-CHOICE=$(echo -e "p: Play\nn: Next\nb: Back" | fuzzel \
+CHOICE=$(echo -e "p\nn\nb\nw" | fuzzel \
     --dmenu \
     --index \
     --auto-select \
@@ -14,7 +14,9 @@ case "$CHOICE" in
     ;;
     2) playerctl previous
     ;;
+    3) foot --app-id="wallpaper-picker" "$HOME/.local/bin/image-picker.sh"
+    ;;
     *) echo $CHOICE
-        ;;
+    ;;
 esac
 
