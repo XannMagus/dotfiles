@@ -21,6 +21,7 @@
         "battery",
         "clock",
         "custom/bluetooth",
+        "network",
         "tray",
         "group/power"
     ],
@@ -192,11 +193,16 @@
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} 󰈀",
-        "tooltip-format": "{ifname} via {gwaddr} 󰈀",
-        "format-linked": "{ifname} (No IP) 󰈀",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "format-wifi": "{icon}",
+        "format-ethernet": "\udb80\ude00",
+        "tooltip-format-wifi": "{ifname}: {essid} ({ipaddr})",
+        "tooltip-format-ethernet": "{ifname}: {ipaddr}",
+        "format-disconnected": "\udb81\uddaa",
+        "format-disabled": "\udb81\uddaa",
+        "format-icons": {
+            "default": ["\udb82\udd2f", "\udb82\udd1f", "\udb82\udd22", "\udb82\udd25", "\udb82\udd28"],
+            "degraded": ["\udb82\udd2b", "\udb82\udd20", "\udb82\udd23", "\udb82\udd26", "\udb82\udd29"]
+        },
+        "on-click": "foot --app-id network-manager impala"
     }
 }
