@@ -1,0 +1,17 @@
+output "eDP-1" {
+    scale 1.00
+    transform "normal"
+    position x=0 y=1440
+}
+
+output "HDMI-A-1" {
+    position x=0 y=0
+}
+
+output "LG Electronics BK550Y 306NTRL1F150" {
+    position x=0 y=0
+}
+
+output "Acer Technologies XB271HU A T4TEE0068507" {
+    position x=0 y=0
+}

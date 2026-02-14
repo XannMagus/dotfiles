@@ -1,0 +1,7 @@
+spawn-at-startup "/home/ahmed/.nix-profile/bin/waybar"
+spawn-at-startup "/home/ahmed/.nix-profile/bin/swaync"
+spawn-at-startup "/home/ahmed/.cargo/bin/awww-daemon"
+spawn-at-startup "/home/ahmed/.cargo/bin/awww" "img" "/home/ahmed/Pictures/Wallpapers/bestof_dark.png"
+spawn-at-startup "/usr/bin/wl-paste --type text --watch cliphist store"
+spawn-at-startup "/usr/bin/wl-paste --type image --watch cliphist store"
+spawn-sh-at-startup "/home/ahmed/.local/bin/bt-notifier-dbus.sh"

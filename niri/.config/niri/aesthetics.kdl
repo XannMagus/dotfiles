@@ -1,0 +1,44 @@
+layout {
+    gaps 0
+    center-focused-column "never"
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
+    default-column-width { proportion 0.5; }
+
+    focus-ring {
+        width 2
+        active-color "#cba6f7"
+        inactive-color "#313244"
+        active-gradient from="#b4befe" to="#cba6f7" angle=45
+        inactive-gradient from="#181825" to="#313244" angle=45 relative-to="workspace-view"
+    }
+
+    border {
+        off
+    }
+
+    struts {
+        left 2
+        right 2
+        top 2
+        bottom 2
+    }
+
+    tab-indicator {
+        hide-when-single-tab
+        place-within-column
+    }
+}
+
+prefer-no-csd
+
+window-rule {
+    geometry-corner-radius 10
+    clip-to-geometry true
+}
+
