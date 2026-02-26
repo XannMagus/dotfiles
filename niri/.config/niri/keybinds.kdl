@@ -107,6 +107,7 @@ binds {
     Mod+Shift+F { fullscreen-window; }
 
     Mod+M hotkey-overlay-title="Media invisible menu" { spawn-sh "/home/ahmed/.local/bin/media-prefix.sh"; }
+    Mod+D hotkey-overlay-title="Display layout invisible menu" { spawn-sh "/home/ahmed/.local/bin/layout-switcher.sh"; }
 
     Mod+Ctrl+F { expand-column-to-available-width; }
 
