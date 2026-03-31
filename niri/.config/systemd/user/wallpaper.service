@@ -1,0 +1,6 @@
+[Unit]
+Description=Update Niri Wallpaper
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c '/home/ahmed/.local/bin/change-wallpaper.sh $(/home/ahmed/.local/bin/pick-next.sh /home/ahmed/Pictures/Wallpapers)'

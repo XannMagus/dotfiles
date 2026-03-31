@@ -6,7 +6,8 @@ YAZI_CONFIG_HOME=~/.config/yazi-image-picker yazi --chooser-file="$TMP_CHOICE" "
 
 if [[ -s "$TMP_CHOICE" ]]; then
     selection=$(cat "$TMP_CHOICE")
-    awww img --transition-step=10 --transition-bezier .25,.1,.25,1 --transition-type fade "$selection"
+    echo "$selection"
+    ~/.local/bin/change-wallpaper.sh "$selection"
 fi
 
 rm "$TMP_CHOICE"

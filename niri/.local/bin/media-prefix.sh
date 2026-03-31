@@ -14,7 +14,7 @@ case "$CHOICE" in
     ;;
     2) playerctl previous
     ;;
-    3) foot --app-id="wallpaper-picker" "$HOME/.local/bin/image-picker.sh"
+    3) ~/.local/bin/wallpaper-menu.sh
     ;;
     4) killall -s SIGUSR1 waybar
     ;;

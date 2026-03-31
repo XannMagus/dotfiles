@@ -1,0 +1,10 @@
+[Unit]
+Description=Clipboard history (text)
+After=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/wl-paste --type text --watch cliphist store
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target

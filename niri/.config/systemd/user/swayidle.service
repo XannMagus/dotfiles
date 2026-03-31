@@ -1,0 +1,14 @@
+[Unit]
+Description=Idle management daemon for Niri session
+Documentation=man:swayidle(1)
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/swayidle -w \
+    timeout 120 'swaylock -f' \
+    timeout 600 'systemctl suspend' \
+    resume 'killall -s SIGUSR2 .waybar-wrapped' \
+    before-sleep 'swaylock -f'
+Restart=on-failure
