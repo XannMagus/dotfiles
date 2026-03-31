@@ -55,5 +55,7 @@ precmd() {
 }
 
 preexec() {
-    print -Pn "\e]0;$1 : %~\a"
+    local cmd="${1//$'\n'/ }"
+    local cmd="${cmd//$'\t'/ }"
+    print -Pn "\e]0;${cmd:0:50} : %~\a"
 }
