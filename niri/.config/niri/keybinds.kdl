@@ -7,7 +7,7 @@ binds {
     Mod+Alt+V hotkey-overlay-title="Copy from Clipboard history" { spawn-sh "cliphist list | fuzzel --dmenu --prompt=\"󱉬  \" | cliphist decode | wl-copy";}
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn-sh "swaylock"; }
     Mod+W hotkey-overlay-title="Open the Browser: Chrome" { spawn "google-chrome-stable" "--enable-features=UseOzonePlatform" "--ozone-platform=x11"; }
-    Mod+E hotkey-overlay-title="Open the File browser: yazi" { spawn "foot" "yazi"; }
+    Mod+E hotkey-overlay-title="Open the File browser: yazi" { spawn "foot" "--app-id=yazi" "yazi"; }
     Mod+Y hotkey-overlay-title="Open the Music player: spotify" { spawn "spotify"; }
     Mod+N hotkey-overlay-title="Open the notifications center" { spawn "/home/ahmed/.nix-profile/bin/swaync-client" "-t" "-sw"; }
 
@@ -108,6 +108,7 @@ binds {
 
     Mod+M hotkey-overlay-title="Media invisible menu" { spawn-sh "/home/ahmed/.local/bin/media-prefix.sh"; }
     Mod+D hotkey-overlay-title="Display layout invisible menu" { spawn-sh "/home/ahmed/.local/bin/layout-switcher.sh"; }
+    Mod+Shift+T hotkey-overlay-title="Theme variant switcher invisible menu" { spawn-sh "/home/ahmed/.local/bin/theme-switcher-menu.sh"; }
 
     Mod+Ctrl+F { expand-column-to-available-width; }
 

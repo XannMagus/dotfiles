@@ -1,4 +1,4 @@
-@import "mocha.css";
+@import "theme.css";
 
 * {
     /* `otf-font-awesome` is required to be installed for icons */
@@ -13,8 +13,12 @@ window#waybar {
     margin: 0.3rem 0.3rem;
 }
 
-window#waybar.empty #window {
+window#waybar.empty #window,
+window#waybar.empty #custom-corner-left,
+window#waybar.empty #custom-corner-right
+{
     background-color: transparent;
+    box-shadow: none;
 }
 
 button {
@@ -34,15 +38,15 @@ button:hover {
 
 #workspaces {
     border-radius: 3rem;
-    margin: 0.4rem;
-    padding: 0.2rem 0.8rem;
+    margin: 0.2rem;
+    padding: 0.1rem 0.8rem;
     background-color: @surface0-80;
     margin-left: 1rem;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
 }
 
 #workspaces button {
-    padding: 0.4rem;
+    padding: 0.1rem;
     color: @mauve;
     background-color: transparent;
     border-radius: 3rem;
@@ -65,13 +69,30 @@ button:hover {
 }
 
 #window {
-    border-radius: 3rem;
-    margin: 0.4rem;
-    padding: 0.4rem 1rem;
+    border-radius: 0 0 1.2rem 1.2rem;
+    margin: 0 0.4rem 0.4rem;
+    padding: 0.1rem 0.8rem;
     background-color: @surface0-80;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin-left: 0;
+    margin-right: 0;
     min-width: 1rem;
+}
+
+#custom-corner-left {
+    background: transparent;
+    border-radius: 0 1.2rem 0 0;
+    margin-top: 0;
+    min-width: 1rem;
+    box-shadow: 0.5rem -0.5rem 0 0.5rem @surface0-80;
+}
+
+#custom-corner-right {
+    background: transparent;
+    border-radius: 1.2rem 0 0 0;
+    margin: 0;
+    padding: 0;
+    min-width: 1rem;
+    box-shadow: -0.5rem -0.5rem 0 0.5rem @surface0-80;
 }
 
 #mode {
@@ -81,8 +102,8 @@ button:hover {
 
 .modules-right > widget > * {
     background-color: @surface0-80;
-    padding: 0.2rem 1rem;
-    margin: 0.4rem 0;
+    padding: 0.1rem 0.2rem;
+    margin: 0.2rem 0;
 }
 
 .modules-right > widget:first-child > * {
@@ -93,17 +114,20 @@ button:hover {
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {
     margin-left: 0;
+    border-radius: 0 3rem 3rem 0;
 }
 
 /* If workspaces is the rightmost module, omit right margin */
 .modules-right > widget:last-child > #workspaces {
     margin-right: 0;
+    border-radius: 3rem 0 0 3rem;
 }
 
 #clock {
     color: @blue;
     border-radius: 0px 3rem 3rem 0px;
-    margin-right: 1rem;
+    padding-right: 1rem;
+    margin-right: 0.5rem;
 }
 
 #clock:hover {
@@ -241,7 +265,9 @@ button:hover {
 }
 
 #power {
-    background: transparent;
+    /* background: @surface0-80; */
+    padding-left: 0.8rem;
+    border-radius: 3rem 0 0 3rem;
 }
 
 #custom-power, #custom-suspend, #custom-reboot, #custom-logout {
@@ -260,8 +286,23 @@ button:hover {
     background-color: #eb4d4b;
 }
 
+#network {
+    padding-right: 0.3rem;
+    padding-left: 0.6rem;
+}
+
+/* #network:not(:last-child) { */
+/*     border-radius: 0; */
+/* } */
+/**/
+/* #network:last-child { */
+/*     margin-right: 1rem; */
+/*     border-radius: 0 3rem 3rem 0; */
+/* } */
+
 #custom-bluetooth {
-    margin-left: 1rem;
+    margin-left: 0.5rem;
+    padding-left: 1rem;
     padding-right: 0;
     border-radius: 3rem 0 0 3rem;
     font-weight: bold;
@@ -278,6 +319,8 @@ button:hover {
 
 #tray {
     margin-right: 1rem;
+    padding-left: 0.6rem;
+    padding-right: 1rem;
     border-radius: 0 3rem 3rem 0;
     color: @teal;
 
@@ -294,7 +337,7 @@ button:hover {
 
 #idle_inhibitor {
     color: @text;
-    padding: 1rem 1.5rem 1rem 1rem;
+    padding: 0.1rem 1.5rem 0.1rem 1rem;
 }
 
 #idle_inhibitor:hover {
@@ -380,4 +423,19 @@ button:hover {
 
 #privacy-item.audio-out {
     background-color: #0069d4;
+}
+
+.cffi-niri-windows .column .tile {
+    background-color: @surface1-80;
+    color: @mauve;
+}
+
+.cffi-niri-windows .column .tile:active {
+    background-color: @mauve-80;
+    color: @crust;
+}
+
+.cffi-niri-windows .column .tile:hover {
+    background-color: @lavender-80;
+    color: @teal;
 }

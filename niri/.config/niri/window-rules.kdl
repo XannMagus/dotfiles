@@ -1,6 +1,7 @@
 window-rule {
     match app-id="bluetooth-manager"
     match app-id="network-manager"
+    match app-id="wdisplays"
     open-floating true
     default-column-width { fixed 800; }
     default-window-height { fixed 500; }
@@ -20,6 +21,9 @@ window-rule {
     match app-id=r#"Google-chrome$"# title="^Meet -"
     match app-id=r#"google-chrome$"# title="^DevTools"
     match app-id=r#"Google-chrome$"# title="^DevTools"
+    match app-id=r#"Google-chrome$"# title="^Browser Extension"
+    match app-id=r#"Google-chrome$"# title="^Sign in - Google Accounts"
+    match app-id=r#"Google-chrome$"# title="^Pay with Paypal"
     open-floating true
 }
 

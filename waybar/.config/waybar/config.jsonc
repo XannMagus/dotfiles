@@ -2,15 +2,18 @@
 {
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 30, // Waybar height (to be removed for auto height)
+    // "height": 30, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 0, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
         "niri/workspaces",
-        "niri/window"
+        "cffi/niri-windows",
     ],
     "modules-center": [
+        "custom/corner-left",
+        "niri/window",
+        "custom/corner-right",
     ],
     "modules-right": [
         "idle_inhibitor",
@@ -33,14 +36,73 @@
             "default": "\uf111"
         }
     },
+    "custom/corner-left": { "format": " " },
+    "custom/corner-right": { "format": " " },
     "niri/window": {
-        "format": "{}",
+        "format": "{app_id}|{title}",
         "max-length": 90,
         "rewrite": {
-            "(.*) - Google Chrome": "\uf268 $1",
-            "(.*) - Slack": "\uf198 $1",
-            "Spotify Premium": "\uf1bc"
+            "^foot\\|nvim (.*): .*": "\ue6ae $1",
+            "^foot\\|lazygit : (.*)": "\udb80\udea2 $1",
+            "^foot\\|lazydocker : (.*)": "\uf21f $1",
+            "^foot\\|(?!(nvim|lazygit|lazydocker)) (.*)": "\uf489  $1",
+            "^spotify\\|(.*)$": "\uf1bc $1",
+            "^spotify\\|Spotify Premium$": "\uf1bc Nothing playing",
+            "^Google-chrome\\|(.*) - Google Chrome$": "\uf268 $1",
+            "^slack\\|(.*) - Slack$": "\uf198 $1",
+            "^yazi\\|Yazi: (.*)$": "\udb80\udde5 $1",
+            "^jetbrains-phpstorm\\|(.*)$": "\ue862 $1",
+            "^steam\\|(.*)$": "\uf1b6 $1",
+            "^(?!(foot|spotify|slack|Google-chrome|yazi|jetbrains-phpstorm|steam)).*\\|(.*)":"$2"
         }
+    },
+    "cffi/niri-windows": {
+        // path where you placed the .so file
+        "module_path": "/home/ahmed/.config/waybar/waybar-niri-windows.so",
+        // configure the module's behavior
+        "options": {
+            // set the module mode
+            // "graphical" (default): draw a minimap of windows in the current workspace
+            // "text": draws symbols and a focus indicator for each column (mirrors v1 behavior)
+            "mode": "graphical",
+
+            "show-floating": "never",
+            "floating-position": "right",
+            "minimum-size": 1,
+            "spacing": 1,
+            "icon-minimum-size": 5,
+            "column-borders": 0, // border on .column
+            "floating-borders": 0, // border on .floating
+            "on-tile-click": "FocusWindow", // (default: FocusWindow)
+            "on-tile-middle-click": "CloseWindow", // (default: CloseWindow)
+            "on-tile-right-click": "", // (default: none)
+            "rules": [
+                { "app-id": "foot", "title": "^lazygit", "class": "git", "icon": "\udb80\udea2" },
+                { "app-id": "foot", "title": "^lazydocker", "class": "docker", "icon": "\uf21f" },
+                { "app-id": "foot", "title": "^nvim", "class": "nvim", "icon": "\ue6ae" },
+                { "app-id": "foot", "class": "foot", "icon": "\uf489" },
+                { "app-id": "yazi", "class": "yazi", "icon": "\udb80\udde5" },
+                { "app-id": "Slack", "class": "slack", "icon": "\uf198" },
+                { "app-id": "spotify", "class": "spotify", "icon": "\uf1bc" },
+                { "app-id": "Postman", "class": "postman", "icon": "\ue86b" },
+                { "app-id": "jetbrains-phpstorm", "class": "jetbrains-phpstorm", "icon": "\ue862" },
+                { "app-id": "steam", "class": "steam", "icon": "\uf1b6" },
+                { "app-id": "Google-chrome", "class": "chrome", "icon": "\uf268","continue": true },
+                { "title": "YouTube Music$", "class": "youtube-music", "icon": "" }
+            ],
+
+            // ======= text mode options =======
+            // customize the symbols used to draw the columns/windows
+            "symbols": {
+                "unfocused": "⋅",
+                "focused": "⊙",
+                "unfocused-floating": "∗",
+                "focused-floating": "⊛",
+                // text to display when there are no windows on the current workspace
+                // if this is an empty string (default), the module will be hidden when there are no windows
+                "empty": ""
+            }
+        },
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -104,7 +166,7 @@
     "custom/power": {
         "format" : "\u23fb ",
 		"tooltip": false,
-        "on-click": "shutdown",
+        "on-click": "systemctl poweroff",
 		// "menu": "on-click",
 		// "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
 		// "menu-actions": {
@@ -127,7 +189,7 @@
     "custom/reboot": {
         "format": "\uead2 ",
         "tooltip": false,
-        "on-click": "reboot",
+        "on-click": "systemctl reboot",
     },
     "custom/bluetooth": {
         "exec": "$XDG_CONFIG_HOME/waybar/bt-status.sh",
@@ -144,7 +206,7 @@
         "on-click-right": "rfkill toggle bluetooth",
     },
     "tray": {
-        "spacing": 10,
+        "spacing": 5,
         "icons": {
           "blueman": "bluetooth",
         }
@@ -193,6 +255,7 @@
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format": "\udb80\ude00",
         "format-wifi": "{icon}",
         "format-ethernet": "\udb80\ude00",
         "tooltip-format-wifi": "{ifname}: {essid} ({ipaddr})",

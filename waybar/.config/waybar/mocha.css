@@ -26,6 +26,8 @@
 @define-color crust #11111b;
 
 @define-color surface0-80 rgba(49, 50, 68, 0.6);
+@define-color surface1-80 rgba(69, 71, 90, 0.6);
+@define-color surface2-80 rgba(69, 71, 90, 0.6);
 @define-color blue-80 rgba(137, 180, 250, 0.6);
 @define-color green-80 rgba(166, 227, 161, 0.6);
 @define-color yellow-80 rgba(249, 226, 175, 0.6);
