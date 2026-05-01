@@ -87,8 +87,10 @@
                 { "app-id": "Postman", "class": "postman", "icon": "\ue86b" },
                 { "app-id": "jetbrains-phpstorm", "class": "jetbrains-phpstorm", "icon": "\ue862" },
                 { "app-id": "steam", "class": "steam", "icon": "\uf1b6" },
+                { "app-id": "discord", "class": "discord", "icon": "\uf1ff" },
                 { "app-id": "Google-chrome", "class": "chrome", "icon": "\uf268","continue": true },
-                { "title": "YouTube Music$", "class": "youtube-music", "icon": "" }
+                { "title": "YouTube Music$", "class": "youtube-music", "icon": "" },
+                { "app-id": "bruno", "class": "bruno", "icon": "\udb82\ude43" }
             ],
 
             // ======= text mode options =======

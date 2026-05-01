@@ -40,5 +40,17 @@ prefer-no-csd
 window-rule {
     geometry-corner-radius 10
     clip-to-geometry true
+
+    background-effect {
+        blur true
+    }
 }
 
+layer-rule {
+    match namespace="^launcher$"
+
+    background-effect {
+        blur true
+        xray false
+    }
+}
