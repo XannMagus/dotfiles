@@ -1,1 +1,10 @@
-/home/ahmed/.config/niri/outputs_home.kdl
+output "DP-2" {
+    scale 1.00
+    transform "normal"
+    position x=0 y=0
+}
+
+output "HDMI-A-1" {
+    position x=2560 y=689
+}
+
