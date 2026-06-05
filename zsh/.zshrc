@@ -59,3 +59,4 @@ preexec() {
     local cmd="${cmd//$'\t'/ }"
     print -Pn "\e]0;${cmd:0:50} : %~\a"
 }
+export PATH="$HOME/.local/bin:$PATH"

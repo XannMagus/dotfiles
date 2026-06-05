@@ -5,11 +5,12 @@ binds {
     Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Mod+Tab hotkey-overlay-title="Choose a window" { spawn-sh "niri msg --json windows | jq -r '.[] | \"\\(.app_id) | \\(.title) | \\(.id)\"' | fuzzel --dmenu --prompt=\"󰖯  \" | awk -F ' | ' '{print $NF}' | xargs -I {} niri msg action focus-window --id {}";}
     Mod+Alt+V hotkey-overlay-title="Copy from Clipboard history" { spawn-sh "cliphist list | fuzzel --dmenu --prompt=\"󱉬  \" | cliphist decode | wl-copy";}
-    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn-sh "swaylock"; }
+    Mod+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn-sh "swaylock"; }
     Mod+W hotkey-overlay-title="Open the Browser: Chrome" { spawn "google-chrome-stable" "--enable-features=UseOzonePlatform" "--ozone-platform=x11"; }
     Mod+E hotkey-overlay-title="Open the File browser: yazi" { spawn "foot" "--app-id=yazi" "yazi"; }
     Mod+Y hotkey-overlay-title="Open the Music player: spotify" { spawn "spotify"; }
     Mod+N hotkey-overlay-title="Open the notifications center" { spawn "/home/ahmed/.nix-profile/bin/swaync-client" "-t" "-sw"; }
+    Mod+Alt+C hotkey-overlay-title="Clock in" { spawn-sh "clocker"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }

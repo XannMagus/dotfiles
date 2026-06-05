@@ -84,6 +84,7 @@
                 { "app-id": "yazi", "class": "yazi", "icon": "\udb80\udde5" },
                 { "app-id": "Slack", "class": "slack", "icon": "\uf198" },
                 { "app-id": "spotify", "class": "spotify", "icon": "\uf1bc" },
+                { "app-id": "Spotify", "class": "spotify", "icon": "\uf1bc" },
                 { "app-id": "Postman", "class": "postman", "icon": "\ue86b" },
                 { "app-id": "jetbrains-phpstorm", "class": "jetbrains-phpstorm", "icon": "\ue862" },
                 { "app-id": "steam", "class": "steam", "icon": "\uf1b6" },

@@ -4,6 +4,7 @@ CHOICE=$(echo -e "p\nn\nb\nw\nh\nr" | fuzzel \
     --index \
     --auto-select \
     --hide-prompt \
+    --namespace=invis \
     --config=/home/ahmed/.config/fuzzel/invisible.ini
 )
 
