@@ -47,6 +47,7 @@ bindkey '^x^e' edit-command-line
 alias cd='z'
 alias ls='eza -lah'
 alias cat='bat'
+alias lazygit='lazygit --use-config-file="$HOME/.config/lazygit/config.yml,$HOME/.config/lazygit/mauve.yml"'
 
 export EDITOR=nvim
 
