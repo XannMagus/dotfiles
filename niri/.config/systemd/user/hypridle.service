@@ -1,0 +1,13 @@
+[Unit]
+Description=Idle management daemon for Niri session
+Documentation=man:hypridle(1)
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/hypridle
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
