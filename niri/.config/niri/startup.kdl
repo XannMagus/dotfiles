@@ -1,4 +1,4 @@
-spawn-at-startup "/home/ahmed/.nix-profile/bin/swaync"
-spawn-at-startup "/home/ahmed/.cargo/bin/awww-daemon"
-spawn-at-startup "/home/ahmed/.cargo/bin/awww" "img" "/home/ahmed/.local/bin/image-picker.sh /home/ahmed/Pictures/Wallpapers/"
-spawn-sh-at-startup "/home/ahmed/.local/bin/bt-notifier-dbus.sh"
+spawn-at-startup "/home/xann/.nix-profile/bin/swaync"
+spawn-at-startup "/usr/bin/awww-daemon"
+spawn-at-startup "/usr/bin/awww" "img" "/home/xann/.local/bin/pick-next.sh /home/xann/Pictures/Wallpapers/"
+spawn-sh-at-startup "/home/xann/.local/bin/bt-notifier-dbus.sh"

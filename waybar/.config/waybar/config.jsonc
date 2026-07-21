@@ -58,7 +58,7 @@
     },
     "cffi/niri-windows": {
         // path where you placed the .so file
-        "module_path": "/home/ahmed/.config/waybar/waybar-niri-windows.so",
+        "module_path": "/home/xann/.config/waybar/waybar-niri-windows.so",
         // configure the module's behavior
         "options": {
             // set the module mode
@@ -194,7 +194,7 @@
         "on-click": "systemctl reboot",
     },
     "custom/bluetooth": {
-        "exec": "$XDG_CONFIG_HOME/waybar/bt-status.sh",
+        "exec": "$HOME/.config/waybar/bt-status.sh",
         "return-type": "json",
         "interval": 2,
         "format": "{icon}",
